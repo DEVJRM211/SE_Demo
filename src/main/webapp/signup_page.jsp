@@ -62,6 +62,9 @@
          <br />
          <br>
          <input placeholder="Password" class="upass" type = "password" name = "last_name" /><br>
+         <br />
+                  <br>
+                  <input placeholder="Password" class="upass" type = "password" name = "last_name" /><br>
          <input  class="lgbtn"  type = "submit"  name="datasb"value = "Submit" />
          <br>
          <a class="sgin_red" href="#signin"  name="Sgin_lbl"> Click here to create an account</a>
