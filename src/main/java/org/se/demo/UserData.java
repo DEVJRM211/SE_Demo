@@ -5,6 +5,8 @@ import com.google.gson.JsonArray;
 import java.util.ArrayList;
 import org.se.demo.WebUser;
 
+import javax.lang.model.element.NestingKind;
+
 public class UserData
 {
     public  String    UserLogin(WebUser   oUser)
@@ -34,20 +36,16 @@ public class UserData
         return  rValue;
     }
 
-    public ArrayList<WebUser> DataList()
+    public String AddContact(Contacts cts)
     {
         CF          oCF         =   new CF();
-        String      query       =   "select * from Users;";
-        JsonArray   rArray      =   oCF.SQL_Call("",query);
-        ArrayList<WebUser>   rList   =   new ArrayList<>();
-         for (int i=0;i<rArray.size();i++)
-         {
-            WebUser user =  new WebUser();
-            user.WU_ID("",rArray.get(i).getAsJsonObject().get("U_ID").getAsInt());
-            user.WU_Name("",rArray.get(i).getAsJsonObject().get("U_Name").getAsString());
-            user.WU_Password("",rArray.get(i).getAsJsonObject().get("U_Password").getAsString());
-            rList.add(user);
-         }
-        return rList;
+        String      query       =   "insert into Contacts(`C_ID`,`C_Name`,`C_Mobile`,`C_Type`,`U_ID`) values "+
+                                    "(0,'"+cts.WC_Name("G","")+"',"+
+                                    "'"+cts.WC_Mobile("G","")+"',"+
+                                    "'"+cts.WC_Type("G","")+"',"+
+                                    cts.WU_ID("G",0)+");";
+        JsonArray   rArray      =   oCF.SQL_Call("S",query);
+        String      rValue      =   "CC";
+        return rValue;
     }
 }

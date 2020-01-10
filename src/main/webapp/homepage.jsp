@@ -22,7 +22,7 @@
         float               :   right   !important;
         border-radius       :   8px 8px;
         background-color    :   #212121;
-        width               :   30%;
+        width               :   40%;
         height              :   400px;
         padding             :   10px;
     }
@@ -56,7 +56,7 @@
         float               :   left   !important;
         border-radius       :   8px 8px;
         background-color    :   #EEEEEE;
-        width               :   65%;
+        width               :   55%;
         height              :   800px;
         padding             :   10px;
     }
@@ -71,35 +71,75 @@
      input
      {
         margin-Top          :   20px;
-        margin-Left         :   20px;
-        width               :   400px;
-        height              :   50px;
+        display             :   block;
+        margin-left         :   auto;
+        margin-right        :   auto;
+        width               :   100%;
+        height              :   60px;
      }
+
+    form
+    {
+        width               :   80%;
+        margin-Left         :   80px;
+    }
+
+    .addBtn
+    {
+        margin-Top          :   40px;
+        margin-Left         :   10px;
+        background-color    :   #304FFE;
+        border              :   0px 0px;
+        border-radius       :   8px 8px;
+        color               :   #ffffff;
+        font-size           :   20px;
+    }
+    .uid
+    {
+        display             :   none;
+    }
+    .uname
+    {
+        display             :   none;
+    }
 
 </style>
 <body>
 
    <div class="pageEntry">
-        <h4> User Contacts </h4>
+      <sql:setDataSource
+           var="myDS"
+           driver="com.mysql.jdbc.Driver"
+           url="jdbc:mysql://codeos/seDemo"
+           user="root" password="jayesh@123"
+       />
+       <sql:query var="listUsers"   dataSource="${myDS}">
+           SELECT * FROM Users WHERE U_Name='<%= session.getAttribute("CurrUser") %>';
+       </sql:query>
+
+        <h4>Add a contact to your list </h4>
+        <h4 ><%= session.getAttribute("CurrUser") %></h4>
         <br>
         <form action="/ResponseData" method="POST">
-             <input  placeholder="First Name" class="fname" type = "text" name = "fname">
+        <center>
+             <input  placeholder="First Name" class="fname" type = "text" name = "fname"><br>
              <input  placeholder="Last  Name" class="lname" type = "text" name = "lname"><br>
-             <input  placeholder="Mobile Number" class="mobnum" type = "text" name = "mobnum">
-
+             <input  placeholder="Mobile Number" class="mobnum" type = "text" name = "mobnum"><br>
+             <input  placeholder="Work / Home"   class="mobtype" type = "text" name = "mobtype"><br>
+        <c:forEach var="user" items="${listUsers.rows}">
+             <input  class="uid" type = "text" name = "UID" value="${user.U_ID}"><br>
+        </c:forEach>
+            <input  class="uname" type = "text" name = "uname" value="<%= session.getAttribute("CurrUser") %>"><br>
+              <input  class="addBtn"  type = "submit"  name="dataadd" value = "Add To Contacts" /><br>
+                <br>
+</center>
 
         </form>
    </div>
     <div class="pageList">
-    <sql:setDataSource
-        var="myDS"
-        driver="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://codeos/seDemo"
-        user="root" password="jayesh@123"
-    />
 
     <sql:query var="listUsers"   dataSource="${myDS}">
-        SELECT * FROM Users;
+        SELECT * FROM Contacts WHERE U_ID=<%= request.getParameter("UID") %>;
     </sql:query>
 
     <div >
@@ -107,11 +147,13 @@
             <tr >
                 <th>Sr.No</th>
                 <th>Name</th>
+                <th>Mobile Number</th>
             </tr>
             <c:forEach var="user" items="${listUsers.rows}">
                 <tr>
-                    <td><c:out value="${user.U_ID}" /></td>
-                    <td><c:out value="${user.U_Name}" /></td>
+                    <td><c:out value="${user.C_ID}" /></td>
+                    <td><c:out value="${user.C_Name}" /></td>
+                    <td><c:out value="${user.C_Mobile}" /></td>
                 </tr>
             </c:forEach>
         </table>

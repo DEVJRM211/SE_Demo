@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -30,10 +31,11 @@ public class HomeServlet extends HttpServlet
             oUser.WU_ID("",0);
             oUser.WU_Name("",request.getParameter("uname"));
             oUser.WU_Password("",request.getParameter("upass"));
+            HttpSession session=request.getSession();
+            session.setAttribute("CurrUser",request.getParameter("uname"));
             String action   =   oData.UserLogin(oUser);
             if(action.equals("LS"))
             {
-//                response.sendRedirect("index.jsp");
                 response.sendRedirect("homepage.jsp");
             }
             else
@@ -55,6 +57,7 @@ public class HomeServlet extends HttpServlet
                 if(action.equals("UC"))
                 {
 //                  response.sendRedirect("index.jsp");
+
                     response.sendRedirect("result.jsp");
                 }
                 else
@@ -63,6 +66,20 @@ public class HomeServlet extends HttpServlet
                     response.sendRedirect("signup_page.jsp");
                 }
             }
+        }
+        else    if(request.getParameter("dataadd") != null)
+        {
+                Contacts    oCTS    =   new Contacts();
+                oCTS.WC_ID("",0);
+                oCTS.WU_ID("",Integer.parseInt(request.getParameter("UID")));
+                oCTS.WC_Name("",request.getParameter("fname")+" "+request.getParameter("lname"));
+                oCTS.WC_Mobile("",request.getParameter("mobnum"));
+                oCTS.WC_Type("",request.getParameter("mobtype"));
+                HttpSession session=request.getSession();
+                session.setAttribute("CurrUser",request.getParameter("uname"));
+                oData.AddContact(oCTS);
+                response.sendRedirect("homepage.jsp");
+
         }
 
     }

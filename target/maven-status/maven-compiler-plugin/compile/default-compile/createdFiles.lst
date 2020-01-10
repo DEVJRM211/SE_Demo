@@ -1,4 +1,5 @@
 org/se/demo/UserData.class
 org/se/demo/CF.class
+org/se/demo/Contacts.class
 org/se/demo/HomeServlet.class
 org/se/demo/WebUser.class
