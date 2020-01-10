@@ -113,12 +113,14 @@
            url="jdbc:mysql://codeos/seDemo"
            user="root" password="jayesh@123"
        />
+
        <sql:query var="listUsers"   dataSource="${myDS}">
            SELECT * FROM Users WHERE U_Name='<%= session.getAttribute("CurrUser") %>';
        </sql:query>
 
-        <h4>Add a contact to your list </h4>
-        <h4 ><%= session.getAttribute("CurrUser") %></h4>
+
+        <h4 >Welcome, <%= session.getAttribute("CurrUser") %></h4>
+           <h4>Add a contact to your list </h4>
         <br>
         <form action="/ResponseData" method="POST">
         <center>
@@ -126,8 +128,10 @@
              <input  placeholder="Last  Name" class="lname" type = "text" name = "lname"><br>
              <input  placeholder="Mobile Number" class="mobnum" type = "text" name = "mobnum"><br>
              <input  placeholder="Work / Home"   class="mobtype" type = "text" name = "mobtype"><br>
+
         <c:forEach var="user" items="${listUsers.rows}">
              <input  class="uid" type = "text" name = "UID" value="${user.U_ID}"><br>
+            <c:set var = "u_id" scope = "session" value = "${user.U_ID}"/>
         </c:forEach>
             <input  class="uname" type = "text" name = "uname" value="<%= session.getAttribute("CurrUser") %>"><br>
               <input  class="addBtn"  type = "submit"  name="dataadd" value = "Add To Contacts" /><br>
@@ -137,23 +141,23 @@
         </form>
    </div>
     <div class="pageList">
-
-    <sql:query var="listUsers"   dataSource="${myDS}">
-        SELECT * FROM Contacts WHERE U_ID=<%= request.getParameter("UID") %>;
-    </sql:query>
+            <sql:query dataSource="${myDS}" var="result">
+                    SELECT * from Contacts where U_ID =?
+                    <sql:param value="${u_id}" />
+            </sql:query>
 
     <div >
         <table   cellpadding="5" >
             <tr >
-                <th>Sr.No</th>
                 <th>Name</th>
                 <th>Mobile Number</th>
+                <th>Type</th>
             </tr>
-            <c:forEach var="user" items="${listUsers.rows}">
+            <c:forEach var="user" items="${result.rows}">
                 <tr>
-                    <td><c:out value="${user.C_ID}" /></td>
                     <td><c:out value="${user.C_Name}" /></td>
                     <td><c:out value="${user.C_Mobile}" /></td>
+                    <td><c:out value="${user.C_Type}" /></td>
                 </tr>
             </c:forEach>
         </table>

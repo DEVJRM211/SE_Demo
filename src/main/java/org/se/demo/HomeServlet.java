@@ -58,7 +58,7 @@ public class HomeServlet extends HttpServlet
                 {
 //                  response.sendRedirect("index.jsp");
 
-                    response.sendRedirect("result.jsp");
+                    response.sendRedirect("index.jsp");
                 }
                 else
                 {
