@@ -1,5 +1,6 @@
 package org.se.demo;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,13 +10,18 @@ import java.io.PrintWriter;
 
 public class HomeServlet extends HttpServlet
 {
-    public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
-            throws IOException {
-         }
+
+
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+
         UserData    oData   =   new UserData();
         WebUser     oUser   =   null;
         if (request.getParameter("datalg") != null)
