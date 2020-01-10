@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Demo-HomePage</title>
+        <title>Demo-Sign Up</title>
        </head>
        <style>
             html
@@ -21,7 +21,7 @@
             {
                 width               :   300px;
                 height              :   45px;
-                margin-Top          :   50px;
+                margin-Top          :   40px;
                 background-color    :   #304FFE;
                 border              :   0px 0px;
                 border-radius       :   8px 8px;
@@ -41,7 +41,13 @@
                 height              :   45px;
 
             }
-            form .sgin_red
+            form .ucnfpass
+            {
+                width               :   300px;
+                height              :   45px;
+
+            }
+            form .lgn_red
             {
                 display			    :   block;
                 color			    :   #212121;
@@ -55,19 +61,19 @@
 <center>
       <form  action = "/ResponseData" method = "POST">
 
-        <h4>Login to your account</h4>
+        <h4>Create an account</h4>
         <br>
 
-         <input  placeholder="User Name" class="uname" type = "text" name = "first_name">
+         <input  placeholder="User Name" class="uname" type = "text" name = "uname">
          <br />
          <br>
-         <input placeholder="Password" class="upass" type = "password" name = "last_name" /><br>
+         <input placeholder="Password" class="upass" type = "password" name = "upass" /><br>
          <br />
-                  <br>
-                  <input placeholder="Password" class="upass" type = "password" name = "last_name" /><br>
-         <input  class="lgbtn"  type = "submit"  name="datasb"value = "Submit" />
+                  <input placeholder="Confirm Password" class="ucnfpass" type = "password" name = "ucnfpass" /><br>
+         <input  class="lgbtn"  type = "submit"  name="datasb" value = "Sign Up" />
          <br>
-         <a class="sgin_red" href="#signin"  name="Sgin_lbl"> Click here to create an account</a>
+         <br>
+         <a class="lgn_red" href="index.jsp"  name="lgn_lbl"> Have an account? <span style="color:#304FFE;">Sign In</span></a>
 
       </form>
      </center>

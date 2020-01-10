@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Demo-Sign In</title>
+        <title>Demo-Homepage</title>
        </head>
        <style>
             html
