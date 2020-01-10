@@ -62,11 +62,12 @@
          <br />
          <br>
          <input placeholder="Password" class="upass" type = "password" name = "upass" /><br>
-         <input  class="lgbtn"  type = "submit"  name="datasb" value = "Sign In" />
+         <input  class="lgbtn"  type = "submit"  name="datalg" value = "Sign In" />
          <br>
          <a class="sgin_red" href="signup_page.jsp"  name="Sgin_lbl">Dont have an account? <span style="color:#304FFE;">Sign Up</span></a>
 
       </form>
+
      </center>
    </body>
 </html>

@@ -13,7 +13,7 @@ public class CF
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            con  =    DriverManager.getConnection("jdbc:mysql://codeos/4qs","root","jayesh@123");
+            con  =    DriverManager.getConnection("jdbc:mysql://codeos/seDemo","root","jayesh@123");
             Statement stmt    =   (Statement) con.createStatement();
             ResultSet rs      =   null;
             JsonArray   oArray  =   null;

@@ -70,7 +70,7 @@
          <input placeholder="Password" class="upass" type = "password" name = "upass" /><br>
          <br />
                   <input placeholder="Confirm Password" class="ucnfpass" type = "password" name = "ucnfpass" /><br>
-         <input  class="lgbtn"  type = "submit"  name="datasb" value = "Sign Up" />
+         <input  class="lgbtn"  type = "submit"  name="datasgn" value = "Sign Up" />
          <br>
          <br>
          <a class="lgn_red" href="index.jsp"  name="lgn_lbl"> Have an account? <span style="color:#304FFE;">Sign In</span></a>

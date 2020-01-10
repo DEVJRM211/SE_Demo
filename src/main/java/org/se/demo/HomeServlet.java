@@ -16,10 +16,47 @@ public class HomeServlet extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-
-        if (request.getParameter("datasb") != null)
+        UserData    oData   =   new UserData();
+        WebUser     oUser   =   null;
+        if (request.getParameter("datalg") != null)
         {
-            response.sendRedirect("result.jsp");
+            oUser = new WebUser();
+            oUser.WU_ID("",0);
+            oUser.WU_Name("",request.getParameter("uname"));
+            oUser.WU_Password("",request.getParameter("upass"));
+            String action   =   oData.UserLogin(oUser);
+            if(action.equals("LS"))
+            {
+//                response.sendRedirect("index.jsp");
+                response.sendRedirect("homepage.jsp");
+            }
+            else
+            {
+//                request.setAttribute("loginstat", " Login Failed!");
+                response.sendRedirect("index.jsp");
+            }
+
+        }
+        else    if(request.getParameter("datasgn") != null)
+        {
+            if(request.getParameter("upass").equals(request.getParameter("ucnfpass")))
+            {
+                oUser = new WebUser();
+                oUser.WU_ID("",0);
+                oUser.WU_Name("",request.getParameter("uname"));
+                oUser.WU_Password("",request.getParameter("upass"));
+                String action   =   oData.UserReg(oUser);
+                if(action.equals("UC"))
+                {
+//                  response.sendRedirect("index.jsp");
+                    response.sendRedirect("result.jsp");
+                }
+                else
+                {
+//                  request.setAttribute("loginstat", " Login Failed!");
+                    response.sendRedirect("signup_page.jsp");
+                }
+            }
         }
 
     }
