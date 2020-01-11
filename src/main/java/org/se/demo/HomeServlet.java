@@ -81,6 +81,12 @@ public class HomeServlet extends HttpServlet
                 response.sendRedirect("homepage.jsp");
 
         }
+        else    if(request.getParameter("DelAccount")   !=    null)
+        {
+                String UserId   =   request.getParameter("UID");
+                oData.DelAccount(UserId);
+                response.sendRedirect("index.jsp");
+        }
 
     }
 

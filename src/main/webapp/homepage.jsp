@@ -103,6 +103,18 @@
         display             :   none;
     }
 
+    .delAcc
+    {
+        margin-Top          :   40px;
+        margin-Left         :   10px;
+        background-color    :   #ff0000;
+        border              :   0px 0px;
+        border-radius       :   8px 8px;
+        color               :   #ffffff;
+        font-size           :   15px;
+        float               :   right   !important;
+        width               :   150px;
+    }
 
 </style>
 <body>
@@ -134,9 +146,10 @@
              <input  class="uid" type = "text" name = "UID" value="${user.U_ID}"><br>
             <c:set var = "u_id" scope = "session" value = "${user.U_ID}"/>
         </c:forEach>
-            <input  class="uname" type = "text" name = "uname" value="<%= session.getAttribute("CurrUser") %>"><br>
-              <input  class="addBtn"  type = "submit"  name="dataadd" value = "Add To Contacts" /><br>
-                <br>
+            <input  class="uname"   type = "text"    name = "uname" value="<%= session.getAttribute("CurrUser") %>"><br>
+            <input  class="addBtn"  type = "submit"  name="dataadd" value = "Add To Contacts" /><br>
+            <br>
+            <input  class="delAcc"  type="submit"   name="DelAccount"   value="Delete Account"><br>
 </center>
 
         </form>

@@ -48,4 +48,14 @@ public class UserData
         String      rValue      =   "CC";
         return rValue;
     }
+
+    public  String  DelAccount(String UID)
+    {
+        CF          oCF     =   new CF();
+        String      query   =   "delete from Contacts where U_ID="+UID+" ;";
+        JsonArray   rArray  =   oCF.SQL_Call("S",query);
+                    query   =   "delete from Users where U_ID="+UID+" ;";
+                    rArray  =   oCF.SQL_Call("S",query);
+        return      "AC";
+    }
 }
